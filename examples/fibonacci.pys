@@ -1,0 +1,75 @@
+# Sequência de Fibonacci em PySimple
+# Demonstra loops, condicionais e funções
+
+def fibonacci_iterativo(n):
+    """Calcula a sequência de Fibonacci de forma iterativa"""
+    if n <= 0:
+        return 0
+    elif n == 1:
+        return 1
+    else:
+        a = 0
+        b = 1
+        for i in range(2, n + 1):
+            temp = a + b
+            a = b
+            b = temp
+        return b
+
+def fibonacci_recursivo(n):
+    """Calcula a sequência de Fibonacci de forma recursiva"""
+    if n <= 0:
+        return 0
+    elif n == 1:
+        return 1
+    else:
+        return fibonacci_recursivo(n - 1) + fibonacci_recursivo(n - 2)
+
+def mostrar_sequencia(n):
+    """Mostra os primeiros n números da sequência"""
+    print("Sequência de Fibonacci com", n, "termos:")
+    for i in range(n):
+        print("F(", i, ") =", fibonacci_iterativo(i))
+
+# Programa principal
+print("=== Calculadora de Fibonacci ===")
+print("Escolha uma opção:")
+print("1. Calcular um termo específico")
+print("2. Mostrar sequência completa")
+print("3. Comparar métodos (iterativo vs recursivo)")
+
+opcao = input("Digite sua escolha: ")
+
+if opcao == "1":
+    print("Digite o número do termo:")
+    termo = int(input())
+    if termo >= 0:
+        resultado = fibonacci_iterativo(termo)
+        print("F(", termo, ") =", resultado)
+    else:
+        print("Por favor, digite um número não negativo.")
+
+elif opcao == "2":
+    print("Quantos termos você quer ver?")
+    quantidade = int(input())
+    if quantidade > 0:
+        mostrar_sequencia(quantidade)
+    else:
+        print("Por favor, digite um número positivo.")
+
+elif opcao == "3":
+    print("Digite o termo para comparar:")
+    termo = int(input())
+    if termo >= 0 and termo <= 30:  # Limite para recursivo não ser muito lento
+        iter_result = fibonacci_iterativo(termo)
+        rec_result = fibonacci_recursivo(termo)
+        print("Método iterativo: F(", termo, ") =", iter_result)
+        print("Método recursivo: F(", termo, ") =", rec_result)
+        print("Ambos deram o mesmo resultado:", iter_result == rec_result)
+    else:
+        print("Para comparação, use termos entre 0 e 30.")
+
+else:
+    print("Opção inválida!")
+
+print("Obrigado por usar o calculador de Fibonacci!")

@@ -1,0 +1,19 @@
+# Programa simples em PySimple - Hello World
+# Este é o primeiro exemplo da linguagem PySimple
+
+# Saída simples
+print("Olá, mundo!")
+print("Bem-vindo à linguagem PySimple!")
+
+# Variáveis básicas
+nome = "PySimple"
+versao = 1.0
+
+print("Linguagem:", nome)
+print("Versão:", versao)
+
+# Entrada e saída interativa
+print("Como você se chama?")
+seu_nome = input()
+print("Olá,", seu_nome, "!")
+print("Espero que goste da linguagem PySimple!")

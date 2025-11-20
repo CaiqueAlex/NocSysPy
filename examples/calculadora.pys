@@ -1,0 +1,59 @@
+# Calculadora simples em PySimple
+# Demonstra operações básicas e estruturas de controle
+
+print("=== Calculadora PySimple ===")
+print("Operações disponíveis:")
+print("1. Adição (+)")
+print("2. Subtração (-)")
+print("3. Multiplicação (*)")
+print("4. Divisão (/)")
+print("5. Potenciação (**)")
+print("6. Sair")
+
+while True:
+    print("\nEscolha uma operação (1-6):")
+    opcao = input()
+    
+    if opcao == "6":
+        print("Obrigado por usar a Calculadora NocSymple!")
+        break
+    elif opcao == "1":
+        print("Digite o primeiro número:")
+        num1 = float(input())
+        print("Digite o segundo número:")
+        num2 = float(input())
+        resultado = num1 + num2
+        print("Resultado:", num1, "+", num2, "=", resultado)
+    elif opcao == "2":
+        print("Digite o primeiro número:")
+        num1 = float(input())
+        print("Digite o segundo número:")
+        num2 = float(input())
+        resultado = num1 - num2
+        print("Resultado:", num1, "-", num2, "=", resultado)
+    elif opcao == "3":
+        print("Digite o primeiro número:")
+        num1 = float(input())
+        print("Digite o segundo número:")
+        num2 = float(input())
+        resultado = num1 * num2
+        print("Resultado:", num1, "*", num2, "=", resultado)
+    elif opcao == "4":
+        print("Digite o primeiro número:")
+        num1 = float(input())
+        print("Digite o segundo número:")
+        num2 = float(input())
+        if num2 != 0:
+            resultado = num1 / num2
+            print("Resultado:", num1, "/", num2, "=", resultado)
+        else:
+            print("Erro: Divisão por zero não é permitida!")
+    elif opcao == "5":
+        print("Digite a base:")
+        base = float(input())
+        print("Digite o expoente:")
+        expoente = float(input())
+        resultado = base ** expoente
+        print("Resultado:", base, "**", expoente, "=", resultado)
+    else:
+        print("Opção inválida! Tente novamente.")
