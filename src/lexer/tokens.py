@@ -1,9 +1,3 @@
-```python
-"""
-Definição dos tokens para o analisador léxico da linguagem NocSysPy.
-Cada token representa um elemento básico da linguagem.
-"""
-
 from enum import Enum, auto
 
 class TokenType(Enum):
