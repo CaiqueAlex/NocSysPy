@@ -1,4 +1,4 @@
-# Especificação da Linguagem PySimple
+# Especificação da Linguagem NocSysPy
 
 ## 1. Alfabeto
 
@@ -12,9 +12,10 @@
 ### Símbolos Especiais
 - Operadores aritméticos: `+`, `-`, `*`, `/`, `%`, `**`, `//`
 - Operadores de comparação: `==`, `!=`, `<`, `>`, `<=`, `>=`
-- Operadores lógicos: `and`, `or`, `not`
+- Operadores lógicos: `e`, `ou`, `nao`
+- Operadores especiais: `<->` (troca), `??` (null coalescing), `=>` (arrow), `|>` (pipe)
 - Atribuição: `=`
-- Delimitadores: `(`, `)`, `[`, `]`, `{`, `}`, `:`, `,`
+- Delimitadores: `(`, `)`, `[`, `]`, `{`, `}`, `:`, `,`, `;`
 - Strings: `"`, `'`
 - Comentário: `#`
 - Underscore: `_`
@@ -27,9 +28,9 @@
 ## 2. Estrutura Léxica
 
 ### Palavras-chave
-if, else, elif, while, for, def, return, class,
-import, from, as, in, is, True, False, None,
-and, or, not, break, continue, pass, print, input
+se, senao, senaose, enquanto, para, funcao, retorna, classe,
+importa, de, como, em, eh, verdadeiro, falso, nada,
+e, ou, nao, quebra, continua, pula, escreva, leia, tipo, async, aguarda
 
 ### Identificadores
 - Iniciam com letra ou underscore
@@ -41,85 +42,57 @@ and, or, not, break, continue, pass, print, input
 
 #### Números Inteiros
 - Decimais: `42`, `1000`, `0`
-- Regex: `[0-9]+`
+- Hexadecimais: `0x1F`, `0xFF`
+- Regex: `[0-9]+|0x[0-9A-Fa-f]+`
 
 #### Números de Ponto Flutuante
 - Com ponto decimal: `3.14`, `0.001`, `42.0`
-- Regex: `[0-9]+\.[0-9]+`
+- Notação científica: `1e5`, `2.5e-3`
+- Regex: `[0-9]+\.[0-9]+([eE][+-]?[0-9]+)?`
 
 #### Strings
 - Delimitadas por aspas simples: `'texto'`
 - Delimitadas por aspas duplas: `"texto"`
+- Strings multi-linha: `"""texto"""`
 - Suportam caracteres de escape: `\n`, `\t`, `\\`, `\"`, `\'`
 
 #### Booleanos
-- `True`
-- `False`
+- `verdadeiro`
+- `falso`
 
 #### Valor Nulo
-- `None`
+- `nada`
 
 ### Comentários
 - Linha única: `# comentário até o fim da linha`
+- Multi-linha: `/* comentário em bloco */`
+
+## 3. Estrutura da Linguagem
 
 ### Programa
-Um programa PySimple é uma sequência de declarações e instruções.
+Um programa NocSysPy é uma sequência de declarações e instruções delimitadas por chaves.
 
 ### Declarações
 
 #### Variáveis
-```python
-nome = valor
-x = 10
-mensagem = "Olá"
+```nocsyspy
+nome = valor;
+x = 10;
+mensagem = "Olá";
+tipo numero = 42;  # Declaração com tipo
 
-def nome_funcao(parametros):
+##### Funções
+
+funcao nome_funcao(parametros) => tipo {
     # corpo da função
-    return valor
+    retorna valor;
+}
 
-if condicao:
-    # bloco
-elif outra_condicao:
-    # bloco
-else:
-    # bloco
+# Arrow function
+quadrado = (x) => x * x;
 
-while condicao:
-    # bloco
-
-for variavel in iteravel:
-    # bloco
-
-Adição: a + b
-Subtração: a - b
-Multiplicação: a * b
-Divisão: a / b
-Divisão inteira: a // b
-Módulo: a % b
-Potenciação: a ** b
-
-Igual: a == b
-Diferente: a != b
-Menor: a < b
-Maior: a > b
-Menor ou igual: a <= b
-Maior ou igual: a >= b
-
-E lógico: a and b
-Ou lógico: a or b
-Negação: not a
-
-Tipagem dinâmica
-Tipos: int, float, str, bool, None, list
-
-Escopo léxico
-Variáveis locais em funções
-Variáveis globais
-
-Implícita em operações mistas (int + float = float)
-Explícita com funções: int(), float(), str(), bool()
-
-print(): Saída de dados
-input(): Entrada de dados
-len(): Comprimento de sequências
-int(), float(), str(), bool(): Conversão de tipos
+# Função async
+async funcao buscar_dados() => lista {
+    aguarda requisicao();
+    retorna dados;
+}

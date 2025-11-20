@@ -1,36 +1,40 @@
+```python
 """
-Definição dos tokens para o analisador léxico da linguagem PySimple.
+Definição dos tokens para o analisador léxico da linguagem NocSysPy.
 Cada token representa um elemento básico da linguagem.
 """
 
 from enum import Enum, auto
 
 class TokenType(Enum):
-    # Palavras-chave
-    IF = auto()
-    ELSE = auto()
-    ELIF = auto()
-    WHILE = auto()
-    FOR = auto()
-    DEF = auto()
-    RETURN = auto()
-    CLASS = auto()
-    IMPORT = auto()
-    FROM = auto()
-    AS = auto()
-    IN = auto()
-    IS = auto()
-    AND = auto()
-    OR = auto()
-    NOT = auto()
-    TRUE = auto()
-    FALSE = auto()
-    NONE = auto()
-    BREAK = auto()
-    CONTINUE = auto()
-    PASS = auto()
-    PRINT = auto()
-    INPUT = auto()
+    # Palavras-chave (português)
+    SE = auto()             # se (if)
+    SENAO = auto()          # senao (else)
+    SENAOSE = auto()        # senaose (elif)
+    ENQUANTO = auto()       # enquanto (while)
+    PARA = auto()           # para (for)
+    FUNCAO = auto()         # funcao (def)
+    RETORNA = auto()        # retorna (return)
+    CLASSE = auto()         # classe (class)
+    IMPORTA = auto()        # importa (import)
+    DE = auto()             # de (from)
+    COMO = auto()           # como (as)
+    EM = auto()             # em (in)
+    EH = auto()             # eh (is)
+    E = auto()              # e (and)
+    OU = auto()             # ou (or)
+    NAO = auto()            # nao (not)
+    VERDADEIRO = auto()     # verdadeiro (True)
+    FALSO = auto()          # falso (False)
+    NADA = auto()           # nada (None)
+    QUEBRA = auto()         # quebra (break)
+    CONTINUA = auto()       # continua (continue)
+    PULA = auto()           # pula (pass)
+    ESCREVA = auto()        # escreva (print)
+    LEIA = auto()           # leia (input)
+    TIPO = auto()           # tipo (type declaration)
+    ASYNC = auto()          # async
+    AGUARDA = auto()        # aguarda (await)
     
     # Identificadores e literais
     IDENTIFIER = auto()
@@ -55,6 +59,12 @@ class TokenType(Enum):
     LESS_EQUAL = auto()     # <=
     GREATER_EQUAL = auto()  # >=
     
+    # Operadores especiais do NocSysPy
+    SWAP = auto()           # <-> (troca)
+    NULL_COALESCING = auto() # ?? (null coalescing)
+    ARROW = auto()          # => (arrow function)
+    PIPE = auto()           # |> (pipe operator)
+    
     # Operador de atribuição
     ASSIGN = auto()         # =
     
@@ -67,14 +77,14 @@ class TokenType(Enum):
     RBRACE = auto()         # }
     COLON = auto()          # :
     COMMA = auto()          # ,
+    SEMICOLON = auto()      # ;
     
     # Controle de fluxo
     NEWLINE = auto()        # \n
-    INDENT = auto()         # Indentação
-    DEDENT = auto()         # Redução de indentação
     
     # Especiais
-    COMMENT = auto()        # #comentário
+    COMMENT = auto()        # # comentário
+    BLOCK_COMMENT = auto()  # /* comentário */
     WHITESPACE = auto()     # espaços
     EOF = auto()            # Fim do arquivo
 
@@ -101,32 +111,49 @@ class Token:
     def __repr__(self):
         return self.__str__()
 
-# Dicionário das palavras-chave
+# Dicionário das palavras-chave em português
 KEYWORDS = {
-    'if': TokenType.IF,
-    'else': TokenType.ELSE,
-    'elif': TokenType.ELIF,
-    'while': TokenType.WHILE,
-    'for': TokenType.FOR,
-    'def': TokenType.DEF,
-    'return': TokenType.RETURN,
-    'class': TokenType.CLASS,
-    'import': TokenType.IMPORT,
-    'from': TokenType.FROM,
-    'as': TokenType.AS,
-    'in': TokenType.IN,
-    'is': TokenType.IS,
-    'and': TokenType.AND,
-    'or': TokenType.OR,
-    'not': TokenType.NOT,
-    'True': TokenType.TRUE,
-    'False': TokenType.FALSE,
-    'None': TokenType.NONE,
-    'break': TokenType.BREAK,
-    'continue': TokenType.CONTINUE,
-    'pass': TokenType.PASS,
-    'print': TokenType.PRINT,
-    'input': TokenType.INPUT,
+    'se': TokenType.SE,
+    'senao': TokenType.SENAO,
+    'senaose': TokenType.SENAOSE,
+    'enquanto': TokenType.ENQUANTO,
+    'para': TokenType.PARA,
+    'funcao': TokenType.FUNCAO,
+    'retorna': TokenType.RETORNA,
+    'classe': TokenType.CLASSE,
+    'importa': TokenType.IMPORTA,
+    'de': TokenType.DE,
+    'como': TokenType.COMO,
+    'em': TokenType.EM,
+    'eh': TokenType.EH,
+    'e': TokenType.E,
+    'ou': TokenType.OU,
+    'nao': TokenType.NAO,
+    'verdadeiro': TokenType.VERDADEIRO,
+    'falso': TokenType.FALSO,
+    'nada': TokenType.NADA,
+    'quebra': TokenType.QUEBRA,
+    'continua': TokenType.CONTINUA,
+    'pula': TokenType.PULA,
+    'escreva': TokenType.ESCREVA,
+    'leia': TokenType.LEIA,
+    'tipo': TokenType.TIPO,
+    'async': TokenType.ASYNC,
+    'aguarda': TokenType.AGUARDA,
+}
+
+# Operadores multi-caractere
+OPERATORS = {
+    '==': TokenType.EQUAL,
+    '!=': TokenType.NOT_EQUAL,
+    '<=': TokenType.LESS_EQUAL,
+    '>=': TokenType.GREATER_EQUAL,
+    '//': TokenType.FLOOR_DIV,
+    '**': TokenType.POWER,
+    '<->': TokenType.SWAP,
+    '??': TokenType.NULL_COALESCING,
+    '=>': TokenType.ARROW,
+    '|>': TokenType.PIPE,
 }
 
 def is_keyword(lexeme: str) -> bool:
@@ -158,3 +185,33 @@ def get_keyword_token_type(lexeme: str) -> TokenType:
         raise KeyError(f"'{lexeme}' não é uma palavra-chave válida")
     
     return KEYWORDS[lexeme]
+
+def is_operator(lexeme: str) -> bool:
+    """
+    Verifica se um lexema é um operador multi-caractere.
+    
+    Args:
+        lexeme: O texto a ser verificado
+        
+    Returns:
+        True se for um operador, False caso contrário
+    """
+    return lexeme in OPERATORS
+
+def get_operator_token_type(lexeme: str) -> TokenType:
+    """
+    Retorna o tipo de token para um operador.
+    
+    Args:
+        lexeme: O operador
+        
+    Returns:
+        O TokenType correspondente ao operador
+        
+    Raises:
+        KeyError: Se o lexema não for um operador válido
+    """
+    if not is_operator(lexeme):
+        raise KeyError(f"'{lexeme}' não é um operador válido")
+    
+    return OPERATORS[lexeme]

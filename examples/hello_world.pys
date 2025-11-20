@@ -1,19 +1,46 @@
-# Programa simples em PySimple - Hello World
-# Este é o primeiro exemplo da linguagem PySimple
+# Programa simples em NocSysPy - Hello World
+# Este é o primeiro exemplo da linguagem NocSysPy
 
 # Saída simples
-print("Olá, mundo!")
-print("Bem-vindo à linguagem PySimple!")
+escreva("Olá, mundo!");
+escreva("Bem-vindo à linguagem NocSysPy!");
 
-# Variáveis básicas
-nome = "PySimple"
-versao = 1.0
+# Variáveis com tipos
+tipo texto nome = "NocSysPy";
+tipo real versao = 1.0;
+tipo inteiro ano = 2025;
 
-print("Linguagem:", nome)
-print("Versão:", versao)
+escreva("Linguagem:", nome);
+escreva("Versão:", versao);
+escreva("Ano:", ano);
 
 # Entrada e saída interativa
-print("Como você se chama?")
-seu_nome = input()
-print("Olá,", seu_nome, "!")
-print("Espero que goste da linguagem PySimple!")
+escreva("Como você se chama?");
+tipo texto seu_nome = leia();
+escreva("Olá,", seu_nome, "!");
+
+# Operador especial - null coalescing
+tipo texto nome_padrao = seu_nome ?? "Usuário";
+escreva("Nome final:", nome_padrao);
+
+# Função simples
+funcao cumprimentar(nome) => texto {
+    retorna "Olá, " + nome + "! Bem-vindo ao NocSysPy!";
+}
+
+tipo texto saudacao = cumprimentar(seu_nome);
+escreva(saudacao);
+
+# Troca de variáveis (operador único do NocSysPy)
+tipo inteiro a = 10;
+tipo inteiro b = 20;
+escreva("Antes da troca: a =", a, ", b =", b);
+a <-> b;  # Operador especial de troca
+escreva("Depois da troca: a =", a, ", b =", b);
+
+# Pipeline de dados (característica única)
+tipo lista numeros = [1, 2, 3, 4, 5];
+tipo inteiro soma = numeros |> somar_todos;
+escreva("Soma dos números:", soma);
+
+escreva("Obrigado por experimentar o NocSysPy!");
