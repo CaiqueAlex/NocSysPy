@@ -96,3 +96,98 @@ async funcao buscar_dados() => lista {
     aguarda requisicao();
     retorna dados;
 }
+
+###### Estruturas de Controle
+
+se (condicao) {
+    # bloco
+} senaose (outra_condicao) {
+    # bloco
+} senao {
+    # bloco
+}
+
+enquanto (condicao) {
+    # bloco
+}
+
+para (variavel em iteravel) {
+    # bloco
+}
+
+Aritiméticos
+
+Adição: a + b
+Subtração: a - b
+Multiplicação: a * b
+Divisão: a / b
+Divisão inteira: a // b
+Módulo: a % b
+Potenciação: a ** b
+
+Comparação
+
+Igual: a == b
+Diferente: a != b
+Menor: a < b
+Maior: a > b
+Menor ou igual: a <= b
+Maior ou igual: a >= b
+
+Lógicos
+
+E lógico: a e b
+Ou lógico: a ou b
+Negação: nao a
+
+Especiais
+
+Troca: a <-> b (troca os valores de a e b)
+Null coalescing: a ?? b (retorna b se a for nada)
+Pipe: valor |> funcao (equivale a funcao(valor))
+
+Tipos Básicos
+
+inteiro: Números inteiros
+real: Números de ponto flutuante
+texto: Strings
+booleano: verdadeiro/falso
+lista: Arrays dinâmicos
+dicionario: Hash maps
+
+Declaração com Tipos
+
+tipo inteiro idade = 25;
+tipo texto nome = "João";
+tipo lista numeros = [1, 2, 3];
+
+####### Unicas
+
+Threading Simples
+
+async funcao tarefa() {
+    escreva("Executando em paralelo");
+}
+
+# Executa múltiplas tarefas
+aguarda tarefa1(), tarefa2(), tarefa3();
+
+Pipeline de Dados
+
+resultado = dados
+    |> filtrar(condicao)
+    |> mapear(transformacao)
+    |> reduzir(operacao);
+
+Troca de Variáveis
+
+a = 10;
+b = 20;
+a <-> b;  # Agora a = 20 e b = 10
+
+escreva(): Saída de dados
+leia(): Entrada de dados
+tamanho(): Comprimento de sequências
+inteiro(), real(), texto(), booleano(): Conversão de tipos
+tipo_de(): Retorna o tipo de uma variável
+async(): Executa função de forma assíncrona
