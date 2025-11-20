@@ -1,28 +1,20 @@
 """
-Pacote do analisador léxico (lexer) para a linguagem PySimple.
+Pacote do analisador léxico (lexer) para a linguagem NocSysPy.
 
 Este pacote contém:
-- Definições de tokens (tokens.py)
-- Analisador léxico principal (lexer.py) - a ser implementado
-- Utilitários para análise lexical
-
-O analisador léxico é responsável por:
-1. Dividir o código fonte em tokens
-2. Identificar palavras-chave, identificadores, operadores e literais
-3. Tratar espaçamento e indentação
-4. Detectar e reportar erros léxicos
+- dfa.py: Definição dos AFDs específicos (identificadores, números, operadores, strings).
+- afn_to_afd.py: Implementação genérica do algoritmo de construção de subconjuntos (AFN -> AFD).
+- lexer.py: Implementação do analisador léxico baseado em AFDs.
 """
 
-from .tokens import Token, TokenType, KEYWORDS, is_keyword, get_keyword_token_type
+from .lexer import Lexer, Token, KEYWORDS
 
 __all__ = [
+    'Lexer',
     'Token',
-    'TokenType', 
     'KEYWORDS',
-    'is_keyword',
-    'get_keyword_token_type'
 ]
 
 __version__ = '1.0.0'
-__author__ = 'PySimple Language Team'
-__description__ = 'Analisador léxico para a linguagem PySimple'
+__author__ = 'NocSysPy Language Team'
+__description__ = 'Analisador léxico para a linguagem NocSysPy'
