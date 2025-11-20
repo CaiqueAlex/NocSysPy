@@ -1,0 +1,15 @@
+func calcular_area(raio) {
+    var pi = 3.14159
+    var area = pi * raio * raio
+    
+    if (area > 100.0) {
+        print("Area grande")
+    } else {
+        print("Area pequena")
+    }
+    
+    return area
+}
+
+var resultado = calcular_area(10)
+print(resultado)
